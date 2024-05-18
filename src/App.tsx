@@ -7,6 +7,8 @@ type Habit = {
   name: string;
   category: string;
   variants: HabitVariant[];
+  status: string;
+  selectedVariant: HabitVariant | null;
 };
 
 type HabitVariant = {
