@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 type Habit = {
   name: string;
@@ -61,8 +62,12 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
             )}
           </div>
           <div className='dropdown'>
-            <div tabIndex={0} role='button' className='btn btn-xs m-1'>
-              Click
+            <div
+              tabIndex={0}
+              role='button'
+              className='btn btn-ghost btn-xs m-1'
+            >
+              <BsThreeDotsVertical />
             </div>
             <ul
               tabIndex={0}
