@@ -2,7 +2,7 @@ export const Habits = () => {
   return (
     <div className='max-w-2xl mx-auto py-3 px-5'>
       <div>
-        <div className='card w-full bg-base-100 shadow-xl'>
+        <div className='card w-full bg-base-100 shadow-xl mb-3'>
           <div className='card-body'>
             <div className='flex justify-between'>
               <div>
@@ -12,7 +12,9 @@ export const Habits = () => {
                 </h2>
                 <p className='mt-1'>
                   Push up - 5 times
-                  <div className='ml-1 badge bg-yellow-800'>Bronze</div>
+                  <div className='ml-1 badge bg-yellow-800 text-black'>
+                    Bronze
+                  </div>
                 </p>
               </div>
               <div className='dropdown'>
@@ -37,6 +39,8 @@ export const Habits = () => {
               <button className='btn btn-sm btn-outline btn-error'>Skip</button>
             </div>
           </div>
+        </div>
+        <div className='card w-full bg-base-100 shadow-xl mb-3'>
           <div className='card-body'>
             <div className='flex justify-between'>
               <div>
@@ -46,7 +50,9 @@ export const Habits = () => {
                 </h2>
                 <p className='mt-1'>
                   Read book - 20 minutes
-                  <div className='ml-1 badge bg-gray-500'>Silver</div>
+                  <div className='ml-1 badge bg-gray-500 text-black'>
+                    Silver
+                  </div>
                 </p>
               </div>
               <div className='dropdown'>
@@ -71,6 +77,8 @@ export const Habits = () => {
               <button className='btn btn-sm btn-outline btn-error'>Skip</button>
             </div>
           </div>
+        </div>
+        <div className='card w-full bg-base-100 shadow-xl mb-3'>
           <div className='card-body'>
             <div className='flex justify-between'>
               <div>
@@ -80,7 +88,9 @@ export const Habits = () => {
                 </h2>
                 <p className='mt-1'>
                   Sunnah - Tahajud
-                  <div className='ml-1 badge bg-yellow-300'>Gold</div>
+                  <div className='ml-1 badge bg-yellow-300 text-black'>
+                    Gold
+                  </div>
                 </p>
               </div>
               <div className='dropdown'>
