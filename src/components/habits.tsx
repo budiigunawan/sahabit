@@ -30,10 +30,9 @@ type HabitsProps = {
 export const Habits = ({ data }: HabitsProps) => {
   return (
     <div className='max-w-2xl mx-auto py-3 px-5'>
-      <div>
-        {data.length &&
-          data.map((habit, idx) => <HabitCard key={idx} habit={habit} />)}
-      </div>
+      {data.length &&
+        data.map((habit, idx) => <HabitCard key={idx} habit={habit} />)}
+      <button className='btn btn-success w-full mt-4'>Add habit</button>
     </div>
   );
 };
