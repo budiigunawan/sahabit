@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 type Habit = {
   name: string;
   category: string;
@@ -26,6 +28,20 @@ type HabitCardProps = {
 };
 
 export const HabitCard = ({ habit }: HabitCardProps) => {
+  const badgeColor = useMemo(() => {
+    if (habit.habitDone) {
+      if (habit.habitDone.selectedLevel?.level === 'gold') {
+        return 'bg-yellow-400';
+      } else if (habit.habitDone.selectedLevel?.level === 'silver') {
+        return 'bg-gray-400';
+      } else {
+        return 'bg-yellow-800';
+      }
+    }
+
+    return null;
+  }, [habit.habitDone]);
+
   return (
     <div className='card w-full bg-base-100 shadow-xl mb-3'>
       <div className='card-body'>
@@ -38,7 +54,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
             {habit.habitDone && (
               <p className='mt-1'>
                 {`${habit.habitDone?.variantName} - ${habit.habitDone?.selectedLevel?.name}`}
-                <div className='ml-1 badge bg-yellow-800 text-black'>
+                <div className={`ml-1 badge text-black ${badgeColor}`}>
                   {habit.habitDone?.selectedLevel?.level}
                 </div>
               </p>
