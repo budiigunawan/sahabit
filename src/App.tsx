@@ -1,6 +1,7 @@
 // import { useState } from 'react';
 import { Header } from './components/header';
 import { Navbar } from './components/navbar';
+import { Habits } from './components/habits';
 
 type Habit = {
   name: string;
@@ -28,6 +29,7 @@ function App() {
     <>
       <Navbar />
       <Header point={point} habitsCounter={habits.length} />
+      <Habits />
     </>
   );
 }
