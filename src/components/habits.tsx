@@ -1,28 +1,6 @@
 import { EmptyHabit } from './empty-habit';
 import { HabitCard } from './habit-card';
-
-type Habit = {
-  name: string;
-  category: string;
-  variants: HabitVariant[];
-  status: string | undefined;
-  habitDone: HabitDone | null;
-};
-
-type HabitVariant = {
-  name: string;
-  levels: VariantLevel[];
-};
-
-type VariantLevel = {
-  level: string;
-  name: string;
-};
-
-type HabitDone = {
-  variantName: string;
-  selectedLevel: VariantLevel | null;
-};
+import { Habit } from '../types/habit-type';
 
 type HabitsProps = {
   data: Habit[];

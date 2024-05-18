@@ -2,29 +2,7 @@
 import { Header } from './components/header';
 import { Navbar } from './components/navbar';
 import { Habits } from './components/habits';
-
-type Habit = {
-  name: string;
-  category: string;
-  variants: HabitVariant[];
-  status: string | undefined;
-  habitDone: HabitDone | null;
-};
-
-type HabitVariant = {
-  name: string;
-  levels: VariantLevel[];
-};
-
-type VariantLevel = {
-  level: string;
-  name: string;
-};
-
-type HabitDone = {
-  variantName: string;
-  selectedLevel: VariantLevel | null;
-};
+import { Habit } from './types/habit-type';
 
 function App() {
   // const [point, setPoint] = useState<number>(3);
