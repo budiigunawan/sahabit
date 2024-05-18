@@ -31,12 +31,12 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
               <div className='badge badge-primary'>{habit.category}</div>
             </h2>
             {habit.habitDone && (
-              <p className='mt-1'>
+              <span className='mt-1'>
                 {`${habit.habitDone?.variantName} - ${habit.habitDone?.selectedLevel?.name}`}
                 <div className={`ml-1 badge text-black ${badgeColor}`}>
                   {habit.habitDone?.selectedLevel?.level}
                 </div>
-              </p>
+              </span>
             )}
           </div>
           <div className='dropdown'>
