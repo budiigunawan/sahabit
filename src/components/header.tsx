@@ -1,4 +1,4 @@
-import goldMedal from '../assets/gold.png';
+import { Medal } from './medal';
 
 type HeaderProps = {
   point: number;
@@ -18,7 +18,7 @@ export const Header = ({ point, tasksCounter }: HeaderProps) => {
           </p>
         </div>
         <div>
-          <img src={goldMedal} alt='gold medal' className='h-20' />
+          <Medal point={point} />
         </div>
       </div>
       <progress
