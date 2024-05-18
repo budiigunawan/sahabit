@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Header } from './components/header';
 import { Navbar } from './components/navbar';
 
-type Task = {
+type Habit = {
   name: string;
   category: string;
-  variants: TaskVariant[];
+  variants: HabitVariant[];
 };
 
-type TaskVariant = {
+type HabitVariant = {
   name: string;
   levels: VariantLevel[];
 };
@@ -20,12 +20,12 @@ type VariantLevel = {
 
 function App() {
   const [point, setPoint] = useState<number>(3);
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [habits, setHabits] = useState<Habit[]>([]);
 
   return (
     <>
       <Navbar />
-      <Header point={point} tasksCounter={tasks.length} />
+      <Header point={point} habitsCounter={habits.length} />
     </>
   );
 }
