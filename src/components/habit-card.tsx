@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Habit } from '../types/habit-type';
+import { Stamp } from './stamp';
 
 type HabitCardProps = {
   habit: Habit;
@@ -10,11 +11,11 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
   const badgeColor = useMemo(() => {
     if (habit.habitDone) {
       if (habit.habitDone.selectedLevel?.level === 'gold') {
-        return 'bg-yellow-400';
+        return 'bg-yellow-300';
       } else if (habit.habitDone.selectedLevel?.level === 'silver') {
         return 'bg-gray-400';
       } else {
-        return 'bg-yellow-800';
+        return 'bg-yellow-500';
       }
     }
 
@@ -23,8 +24,8 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
 
   return (
     <div className='card w-full bg-base-100 shadow-xl mb-3'>
-      <div className='card-body'>
-        <div className='flex justify-between'>
+      <div>
+        <div className='flex justify-between p-4 pb-2'>
           <div>
             <h2 className='card-title'>
               {habit.name}
@@ -60,9 +61,10 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
             </ul>
           </div>
         </div>
-        <div className='card-actions justify-end mt-2'>
+        <div className='relative card-actions p-4 overflow-hidden'>
           <button className='btn btn-sm btn-success'>Do it</button>
           <button className='btn btn-sm btn-outline btn-error'>Skip</button>
+          {habit.status && <Stamp status={habit.status} />}
         </div>
       </div>
     </div>
