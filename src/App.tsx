@@ -15,7 +15,7 @@ function App() {
     <>
       <Navbar />
       <Header point={point} habitsCounter={habits.length} />
-      <Habits data={habits} />
+      <Habits habits={habits} />
     </>
   );
 }

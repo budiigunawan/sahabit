@@ -63,7 +63,7 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
         </div>
         <div className='relative card-actions p-4 overflow-hidden'>
           <button
-            className={`btn btn-sm btn-success ${
+            className={`btn btn-sm btn-success text-white ${
               habit.status && 'btn-disabled'
             }`}
           >

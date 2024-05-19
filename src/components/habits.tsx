@@ -3,18 +3,20 @@ import { HabitCard } from './habit-card';
 import { Habit } from '../types/habit-type';
 
 type HabitsProps = {
-  data: Habit[];
+  habits: Habit[];
 };
 
-export const Habits = ({ data }: HabitsProps) => {
+export const Habits = ({ habits }: HabitsProps) => {
   return (
     <div className='max-w-2xl mx-auto py-3 px-5'>
-      {data?.length ? (
-        data?.map((habit, idx) => <HabitCard key={idx} habit={habit} />)
+      {habits?.length ? (
+        habits?.map((habit, index) => <HabitCard key={index} habit={habit} />)
       ) : (
         <EmptyHabit />
       )}
-      <button className='btn btn-success w-full mt-8'>Add habit</button>
+      <button className='btn btn-success w-full mt-8 text-white'>
+        Add habit
+      </button>
     </div>
   );
 };
