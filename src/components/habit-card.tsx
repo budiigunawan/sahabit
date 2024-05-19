@@ -1,28 +1,7 @@
 import { useMemo } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-
-type Habit = {
-  name: string;
-  category: string;
-  variants: HabitVariant[];
-  status: string | undefined;
-  habitDone: HabitDone | null;
-};
-
-type HabitVariant = {
-  name: string;
-  levels: VariantLevel[];
-};
-
-type VariantLevel = {
-  level: string;
-  name: string;
-};
-
-type HabitDone = {
-  variantName: string;
-  selectedLevel: VariantLevel | null;
-};
+import { Habit } from '../types/habit-type';
+import { Stamp } from './stamp';
 
 type HabitCardProps = {
   habit: Habit;
@@ -32,11 +11,11 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
   const badgeColor = useMemo(() => {
     if (habit.habitDone) {
       if (habit.habitDone.selectedLevel?.level === 'gold') {
-        return 'bg-yellow-400';
+        return 'bg-yellow-300';
       } else if (habit.habitDone.selectedLevel?.level === 'silver') {
         return 'bg-gray-400';
       } else {
-        return 'bg-yellow-800';
+        return 'bg-yellow-500';
       }
     }
 
@@ -45,20 +24,20 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
 
   return (
     <div className='card w-full bg-base-100 shadow-xl mb-3'>
-      <div className='card-body'>
-        <div className='flex justify-between'>
+      <div>
+        <div className='flex justify-between p-4 pb-2'>
           <div>
             <h2 className='card-title'>
               {habit.name}
               <div className='badge badge-primary'>{habit.category}</div>
             </h2>
             {habit.habitDone && (
-              <p className='mt-1'>
+              <span className='mt-1'>
                 {`${habit.habitDone?.variantName} - ${habit.habitDone?.selectedLevel?.name}`}
-                <div className={`ml-1 badge text-black ${badgeColor}`}>
+                <div className={`ml-2 badge text-black ${badgeColor}`}>
                   {habit.habitDone?.selectedLevel?.level}
                 </div>
-              </p>
+              </span>
             )}
           </div>
           <div className='dropdown'>
@@ -82,9 +61,22 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
             </ul>
           </div>
         </div>
-        <div className='card-actions justify-end mt-2'>
-          <button className='btn btn-sm btn-success'>Do it</button>
-          <button className='btn btn-sm btn-outline btn-error'>Skip</button>
+        <div className='relative card-actions p-4 overflow-hidden'>
+          <button
+            className={`btn btn-sm btn-success ${
+              habit.status && 'btn-disabled'
+            }`}
+          >
+            Do it
+          </button>
+          <button
+            className={`btn btn-sm btn-error ${
+              habit.status ? 'btn-disabled' : 'btn-outline'
+            }`}
+          >
+            Skip
+          </button>
+          {habit.status && <Stamp status={habit.status} />}
         </div>
       </div>
     </div>
