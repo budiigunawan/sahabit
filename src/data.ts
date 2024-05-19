@@ -28,7 +28,7 @@ export const habitSeed = [
         ],
       },
     ],
-    status: 'skip',
+    status: '',
     habitDone: {
       variantName: 'Jogging',
       selectedLevel: {
@@ -66,7 +66,7 @@ export const habitSeed = [
         ],
       },
     ],
-    status: 'done',
+    status: 'skip',
     habitDone: {
       variantName: 'Leetcode',
       selectedLevel: {

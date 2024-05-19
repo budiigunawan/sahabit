@@ -62,8 +62,20 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
           </div>
         </div>
         <div className='relative card-actions p-4 overflow-hidden'>
-          <button className='btn btn-sm btn-success'>Do it</button>
-          <button className='btn btn-sm btn-outline btn-error'>Skip</button>
+          <button
+            className={`btn btn-sm btn-success ${
+              habit.status && 'btn-disabled'
+            }`}
+          >
+            Do it
+          </button>
+          <button
+            className={`btn btn-sm btn-error ${
+              habit.status ? 'btn-disabled' : 'btn-outline'
+            }`}
+          >
+            Skip
+          </button>
           {habit.status && <Stamp status={habit.status} />}
         </div>
       </div>
