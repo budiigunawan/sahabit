@@ -23,7 +23,11 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
   }, [habit.habitDone]);
 
   return (
-    <div className='card w-full bg-base-100 shadow-xl mb-3'>
+    <div
+      className={`card w-full bg-base-100 shadow-xl mb-3 dark:bg-gradient-to-l dark:from-gray-950/80 dark:to-gray-800 ${
+        !!habit.status && 'bg-white/40 dark:text-gray-700 dark:to-gray-800/20'
+      }`}
+    >
       <div>
         <div className='flex justify-between p-4 pb-2'>
           <div>
