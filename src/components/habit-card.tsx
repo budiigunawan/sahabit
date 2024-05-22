@@ -48,7 +48,9 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
             <div
               tabIndex={0}
               role='button'
-              className='btn btn-ghost btn-xs m-1'
+              className={`btn btn-ghost btn-xs m-1 ${
+                habit.status && 'btn-disabled'
+              }`}
             >
               <BsThreeDotsVertical />
             </div>
