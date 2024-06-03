@@ -12,7 +12,7 @@ export const Navbar = () => {
               Sahabit
             </a>
           </div>
-          <div className='flex-none'>
+          {/* <div className='flex-none'>
             <label
               htmlFor='drawer-navbar'
               aria-label='open sidebar'
@@ -32,10 +32,10 @@ export const Navbar = () => {
                 ></path>
               </svg>
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className='drawer-side'>
+      {/* <div className='drawer-side'>
         <label
           htmlFor='drawer-navbar'
           aria-label='close sidebar'
@@ -49,7 +49,7 @@ export const Navbar = () => {
             <a>Remove all data</a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
