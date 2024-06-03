@@ -5,6 +5,7 @@ import './index.css';
 import { Root } from './routes/root.tsx';
 import { ErrorPage } from './components/error-page.tsx';
 import { AddHabit } from './routes/add-habit.tsx';
+import { EditHabit } from './routes/edit-habit.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const router = createBrowserRouter([
   {
     path: '/add-habit',
     element: <AddHabit />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/edit-habit/:habitId',
+    element: <EditHabit />,
     errorElement: <ErrorPage />,
   },
 ]);

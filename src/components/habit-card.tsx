@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Habit } from '../types/habit-type';
 import { Stamp } from './stamp';
+import { Link } from 'react-router-dom';
 
 type HabitCardProps = {
   habit: Habit;
@@ -53,10 +54,10 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
               className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
             >
               <li>
-                <a>Edit</a>
+                <Link to={'/edit-habit/123'}>Edit</Link>
               </li>
               <li>
-                <a>Delete</a>
+                <button>Delete</button>
               </li>
             </ul>
           </div>
