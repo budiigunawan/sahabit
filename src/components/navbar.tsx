@@ -5,14 +5,14 @@ export const Navbar = () => {
     <div className='drawer drawer-end'>
       <input id='drawer-navbar' type='checkbox' className='drawer-toggle' />
       <div className='drawer-content flex flex-col'>
-        <div className='navbar bg-base-100 max-w-2xl mx-auto'>
+        <div className='navbar bg-base-100'>
           <div className='flex-1'>
             <a className='btn btn-ghost text-xl px-2'>
               <img src={Logo} className='h-7 w-7' />
               Sahabit
             </a>
           </div>
-          <div className='flex-none'>
+          {/* <div className='flex-none'>
             <label
               htmlFor='drawer-navbar'
               aria-label='open sidebar'
@@ -32,10 +32,10 @@ export const Navbar = () => {
                 ></path>
               </svg>
             </label>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div className='drawer-side'>
+      {/* <div className='drawer-side'>
         <label
           htmlFor='drawer-navbar'
           aria-label='close sidebar'
@@ -49,7 +49,7 @@ export const Navbar = () => {
             <a>Remove all data</a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

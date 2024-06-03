@@ -2,12 +2,19 @@ import { useMemo } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Habit } from '../types/habit-type';
 import { Stamp } from './stamp';
+import { Link } from 'react-router-dom';
 
 type HabitCardProps = {
   habit: Habit;
+  setDeleteHabitId: (habitId: string) => void;
 };
 
-export const HabitCard = ({ habit }: HabitCardProps) => {
+export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
+  const handleOpenDeleteModal = (habitId: string) => {
+    setDeleteHabitId(habitId);
+    (document?.getElementById('delete-modal') as HTMLDialogElement).showModal();
+  };
+
   const badgeColor = useMemo(() => {
     if (habit.habitDone) {
       if (habit.habitDone.selectedLevel?.level === 'gold') {
@@ -53,17 +60,19 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
               className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
             >
               <li>
-                <a>Edit</a>
+                <Link to={'/edit-habit/123'}>Edit</Link>
               </li>
               <li>
-                <a>Delete</a>
+                <button onClick={() => handleOpenDeleteModal(habit.id)}>
+                  Delete
+                </button>
               </li>
             </ul>
           </div>
         </div>
         <div className='relative card-actions p-4 overflow-hidden'>
           <button
-            className={`btn btn-sm btn-success ${
+            className={`btn btn-sm btn-success text-white ${
               habit.status && 'btn-disabled'
             }`}
           >
