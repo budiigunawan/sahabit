@@ -3,15 +3,23 @@ import { MdAdd, MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 export const AddHabit = () => {
+  const handleSubmitHabit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const values = Object.fromEntries(formData.entries());
+    console.log(values);
+  };
+
   return (
     <Layout>
       <h2 className='font-bold text-xl mt-4'>Add new habit</h2>
-      <form action='post'>
+      <form onSubmit={handleSubmitHabit}>
         <div className='form-control w-full mt-2'>
           <div className='label'>
             <span className='label-text'>Name:</span>
           </div>
           <input
+            name='name'
             type='text'
             placeholder='Exercise'
             className='input input-bordered w-full'
@@ -21,10 +29,10 @@ export const AddHabit = () => {
           <div className='label'>
             <span className='label-text'>Category:</span>
           </div>
-          <select className='select select-bordered'>
-            <option>Body</option>
-            <option>Mind</option>
-            <option>Soul</option>
+          <select name='category' className='select select-bordered'>
+            <option value='body'>Body</option>
+            <option value='mind'>Mind</option>
+            <option value='soul'>Soul</option>
           </select>
         </div>
         <div className='form-control w-full mt-2'>
@@ -38,6 +46,7 @@ export const AddHabit = () => {
                   <span className='label-text'>Variant name:</span>
                 </div>
                 <input
+                  name='variantName'
                   type='text'
                   placeholder='Jogging'
                   className='input input-bordered w-full'
@@ -49,15 +58,30 @@ export const AddHabit = () => {
                 </div>
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Gold:
-                  <input type='text' className='grow' placeholder='1km' />
+                  <input
+                    name='goldVariant'
+                    type='text'
+                    className='grow'
+                    placeholder='1km'
+                  />
                 </label>
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Silver:
-                  <input type='text' className='grow' placeholder='2km' />
+                  <input
+                    name='silverVariant'
+                    type='text'
+                    className='grow'
+                    placeholder='2km'
+                  />
                 </label>
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Bronze:
-                  <input type='text' className='grow' placeholder='5km' />
+                  <input
+                    name='bronzeVariant'
+                    type='text'
+                    className='grow'
+                    placeholder='5km'
+                  />
                 </label>
               </div>
               <div className='card-actions justify-end'>
