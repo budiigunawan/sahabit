@@ -8,7 +8,7 @@ type HabitsProps = {
 
 export const Habits = ({ habits }: HabitsProps) => {
   return (
-    <div className='max-w-2xl mx-auto py-3 px-5'>
+    <div className='py-3 px-5'>
       {habits?.length ? (
         habits?.map((habit, index) => <HabitCard key={index} habit={habit} />)
       ) : (

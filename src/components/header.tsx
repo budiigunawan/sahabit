@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export const Header = ({ point, habitsCounter }: HeaderProps) => {
   return (
-    <div className='max-w-2xl mx-auto py-3 px-5 '>
+    <div className='py-3 px-5 '>
       <div className='flex justify-between'>
         <div className='flex flex-col justify-center'>
           <h1 className='text-xl font-semibold'>Hello Champ!</h1>

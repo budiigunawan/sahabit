@@ -5,7 +5,7 @@ export const Navbar = () => {
     <div className='drawer drawer-end'>
       <input id='drawer-navbar' type='checkbox' className='drawer-toggle' />
       <div className='drawer-content flex flex-col'>
-        <div className='navbar bg-base-100 max-w-2xl mx-auto'>
+        <div className='navbar bg-base-100'>
           <div className='flex-1'>
             <a className='btn btn-ghost text-xl px-2'>
               <img src={Logo} className='h-7 w-7' />
