@@ -4,11 +4,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import { Root } from './routes/root.tsx';
 import { ErrorPage } from './components/error-page.tsx';
+import { AddHabit } from './routes/add-habit.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/add-habit',
+    element: <AddHabit />,
     errorElement: <ErrorPage />,
   },
 ]);
