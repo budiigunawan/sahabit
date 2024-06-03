@@ -1,5 +1,6 @@
 export const habitSeed = [
   {
+    id: '123',
     name: 'Exercise',
     category: 'body',
     variants: [
@@ -38,6 +39,7 @@ export const habitSeed = [
     },
   },
   {
+    id: '456',
     name: 'Study',
     category: 'mind',
     variants: [
@@ -76,6 +78,7 @@ export const habitSeed = [
     },
   },
   {
+    id: '789',
     name: 'Ritual',
     category: 'soul',
     variants: [

@@ -6,9 +6,15 @@ import { Link } from 'react-router-dom';
 
 type HabitCardProps = {
   habit: Habit;
+  setDeleteHabitId: (habitId: string) => void;
 };
 
-export const HabitCard = ({ habit }: HabitCardProps) => {
+export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
+  const handleOpenDeleteModal = (habitId: string) => {
+    setDeleteHabitId(habitId);
+    (document?.getElementById('delete-modal') as HTMLDialogElement).showModal();
+  };
+
   const badgeColor = useMemo(() => {
     if (habit.habitDone) {
       if (habit.habitDone.selectedLevel?.level === 'gold') {
@@ -57,7 +63,9 @@ export const HabitCard = ({ habit }: HabitCardProps) => {
                 <Link to={'/edit-habit/123'}>Edit</Link>
               </li>
               <li>
-                <button>Delete</button>
+                <button onClick={() => handleOpenDeleteModal(habit.id)}>
+                  Delete
+                </button>
               </li>
             </ul>
           </div>
