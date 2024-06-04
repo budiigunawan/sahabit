@@ -43,7 +43,6 @@ async function action({ request }: ActionProps) {
       },
     ],
   };
-  // console.log(payload, 'iki payload');
 
   await createHabit(payload);
   return redirect(`/`);

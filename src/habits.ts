@@ -5,7 +5,7 @@ import { Habit } from './types/habit-type';
 
 export async function getHabits(query?: string) {
   await fakeNetwork(`getHabits:${query}`);
-  let habits: Habit[] | null = await localforage.getItem('habits');
+  let habits = (await localforage.getItem('habits')) as Habit[];
   if (!habits) habits = [];
   if (query) {
     habits = matchSorter(habits, query, { keys: ['first', 'last'] });
@@ -34,20 +34,22 @@ export async function createHabit(payload: Habit) {
 
 export async function getHabit(id: string) {
   await fakeNetwork(`habit:${id}`);
-  const habits: Habit[] | null = await localforage.getItem('habits');
+  const habits = (await localforage.getItem('habits')) as Habit[];
   const habit = habits?.find((habit) => habit.id === id);
   return habit ?? null;
 }
 
-// export async function updateContact(id, updates) {
-//   await fakeNetwork();
-//   let habits = await localforage.getItem('habits');
-//   let contact = habits.find((contact) => contact.id === id);
-//   if (!contact) throw new Error('No contact found for', id);
-//   Object.assign(contact, updates);
-//   await set(habits);
-//   return contact;
-// }
+export async function editHabit(id: string, payload: Habit) {
+  await fakeNetwork();
+  const habits = (await localforage.getItem('habits')) as Habit[];
+  const habit = habits?.find((habit) => habit.id === id);
+
+  if (!habit) throw new Error(`No habit found for ${id}`);
+
+  Object.assign(habit, payload);
+  await set(habits);
+  return habit;
+}
 
 // export async function deleteContact(id) {
 //   let habits = await localforage.getItem('habits');
