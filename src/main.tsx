@@ -24,6 +24,7 @@ const router = createBrowserRouter([
     path: '/edit-habit/:habitId',
     element: <EditHabit />,
     errorElement: <ErrorPage />,
+    loader: EditHabit.loader,
   },
 ]);
 

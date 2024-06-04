@@ -32,12 +32,12 @@ export async function createHabit(payload: Habit) {
   return habit;
 }
 
-// export async function getContact(id) {
-//   await fakeNetwork(`contact:${id}`);
-//   let habits = await localforage.getItem('habits');
-//   let contact = habits.find((contact) => contact.id === id);
-//   return contact ?? null;
-// }
+export async function getHabit(id: string) {
+  await fakeNetwork(`habit:${id}`);
+  const habits: Habit[] | null = await localforage.getItem('habits');
+  const habit = habits?.find((habit) => habit.id === id);
+  return habit ?? null;
+}
 
 // export async function updateContact(id, updates) {
 //   await fakeNetwork();

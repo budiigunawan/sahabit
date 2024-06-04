@@ -60,10 +60,10 @@ export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
               className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
             >
               <li>
-                <Link to={'/edit-habit/123'}>Edit</Link>
+                <Link to={`/edit-habit/${habit.id}`}>Edit</Link>
               </li>
               <li>
-                <button onClick={() => handleOpenDeleteModal(habit.id)}>
+                <button onClick={() => handleOpenDeleteModal(habit.id || '')}>
                   Delete
                 </button>
               </li>

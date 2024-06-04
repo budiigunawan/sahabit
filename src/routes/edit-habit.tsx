@@ -1,8 +1,20 @@
 import { Layout } from '../components/layout';
 import { MdAdd, MdDeleteForever } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import { getHabit } from '../habits';
+import { Habit } from '../types/habit-type';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function loader({ params }: { params: any }): Promise<{
+  habit: Habit | null;
+}> {
+  const habit = await getHabit(params.habitId);
+  return { habit };
+}
 
 export const EditHabit = () => {
+  const { habit } = useLoaderData() as { habit: Habit };
+
   const handleEditHabit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -19,6 +31,7 @@ export const EditHabit = () => {
             <span className='label-text'>Name:</span>
           </div>
           <input
+            defaultValue={habit?.name}
             name='name'
             type='text'
             placeholder='Exercise'
@@ -29,7 +42,11 @@ export const EditHabit = () => {
           <div className='label'>
             <span className='label-text'>Category:</span>
           </div>
-          <select name='category' className='select select-bordered'>
+          <select
+            defaultValue={habit?.category}
+            name='category'
+            className='select select-bordered'
+          >
             <option value='body'>Body</option>
             <option value='mind'>Mind</option>
             <option value='soul'>Soul</option>
@@ -46,6 +63,7 @@ export const EditHabit = () => {
                   <span className='label-text'>Variant name:</span>
                 </div>
                 <input
+                  defaultValue={habit?.variants[0]?.name}
                   name='variantName'
                   type='text'
                   placeholder='Jogging'
@@ -59,6 +77,7 @@ export const EditHabit = () => {
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Gold:
                   <input
+                    defaultValue={habit?.variants[0]?.levels[0]?.name}
                     name='goldVariant'
                     type='text'
                     className='grow'
@@ -68,6 +87,7 @@ export const EditHabit = () => {
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Silver:
                   <input
+                    defaultValue={habit?.variants[0]?.levels[1]?.name}
                     name='silverVariant'
                     type='text'
                     className='grow'
@@ -77,6 +97,7 @@ export const EditHabit = () => {
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
                   Bronze:
                   <input
+                    defaultValue={habit?.variants[0]?.levels[2]?.name}
                     name='bronzeVariant'
                     type='text'
                     className='grow'
@@ -107,3 +128,5 @@ export const EditHabit = () => {
     </Layout>
   );
 };
+
+EditHabit.loader = loader;
