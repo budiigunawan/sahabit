@@ -51,16 +51,16 @@ export async function editHabit(id: string, payload: Habit) {
   return habit;
 }
 
-// export async function deleteContact(id) {
-//   let habits = await localforage.getItem('habits');
-//   let index = habits.findIndex((contact) => contact.id === id);
-//   if (index > -1) {
-//     habits.splice(index, 1);
-//     await set(habits);
-//     return true;
-//   }
-//   return false;
-// }
+export async function deleteHabit(id: string) {
+  const habits = (await localforage.getItem('habits')) as Habit[];
+  const index = habits.findIndex((habit) => habit.id === id);
+  if (index > -1) {
+    habits.splice(index, 1);
+    await set(habits);
+    return true;
+  }
+  return false;
+}
 
 function set(habits: Habit[]) {
   return localforage.setItem('habits', habits);

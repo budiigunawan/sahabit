@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { EmptyHabit } from './empty-habit';
 import { HabitCard } from './habit-card';
 import { Habit } from '../types/habit-type';
-import { Link } from 'react-router-dom';
+import { Link, useRevalidator } from 'react-router-dom';
 import { DeleteModal } from './delete-modal';
+import { deleteHabit } from '../habits';
 
 type HabitsProps = {
   habits: Habit[];
@@ -11,9 +12,11 @@ type HabitsProps = {
 
 export const Habits = ({ habits }: HabitsProps) => {
   const [deleteHabitId, setDeleteHabitId] = useState<string>('');
+  const revalidator = useRevalidator();
 
-  const handleDeleteHabit = () => {
-    console.log(deleteHabitId, 'this habit will be deleted');
+  const handleDeleteHabit = async () => {
+    await deleteHabit(deleteHabitId);
+    revalidator.revalidate();
   };
 
   return (
