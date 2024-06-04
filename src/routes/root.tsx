@@ -1,12 +1,47 @@
+import { useMemo } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { getHabits } from '../habits';
 import { Header } from '../components/header';
 import { Habits } from '../components/habits';
-import { Habit } from '../types/habit-type';
-import { habitSeed } from '../data';
 import { Layout } from '../components/layout';
+import { Habit } from '../types/habit-type';
+
+async function loader(): Promise<{
+  habits: Habit[];
+}> {
+  const habits = await getHabits();
+  return { habits };
+}
 
 export const Root = () => {
-  const point = 3;
-  const habits: Habit[] = habitSeed;
+  const { habits } = useLoaderData() as { habits: Habit[] };
+
+  const getPoint = (levelName?: string) => {
+    if (!levelName) return 0;
+
+    if (levelName === 'gold') {
+      return 3;
+    } else if (levelName === 'silver') {
+      return 2;
+    } else {
+      return 1;
+    }
+  };
+
+  const point: number = useMemo(() => {
+    if (habits.length) {
+      let totalPoint: number = 0;
+
+      habits.forEach((habit) => {
+        totalPoint =
+          totalPoint + getPoint(habit?.habitDone?.selectedLevel?.level);
+      });
+
+      return totalPoint;
+    }
+
+    return 0;
+  }, [habits]);
 
   return (
     <Layout>
@@ -15,3 +50,5 @@ export const Root = () => {
     </Layout>
   );
 };
+
+Root.loader = loader;
