@@ -1,10 +1,11 @@
 export type Habit = {
   id: string;
+  createdAt?: number;
   name: string;
   category: string;
   variants: HabitVariant[];
-  status: string | undefined;
-  habitDone: HabitDone | null;
+  status?: string;
+  habitDone?: HabitDone;
 };
 
 export type HabitVariant = {
