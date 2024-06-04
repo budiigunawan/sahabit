@@ -18,6 +18,7 @@ const router = createBrowserRouter([
     path: '/add-habit',
     element: <AddHabit />,
     errorElement: <ErrorPage />,
+    action: AddHabit.action,
   },
   {
     path: '/edit-habit/:habitId',

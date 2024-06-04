@@ -1,19 +1,59 @@
 import { Layout } from '../components/layout';
 import { MdAdd, MdDeleteForever } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, Form, redirect } from 'react-router-dom';
+import { Habit } from '../types/habit-type';
+import { createHabit } from '../habits';
+
+type ActionProps = {
+  request: Request;
+};
+
+async function action({ request }: ActionProps) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  const {
+    name,
+    category,
+    variantName,
+    goldVariant,
+    silverVariant,
+    bronzeVariant,
+  } = data;
+
+  const payload: Habit = {
+    name: name as string,
+    category: category as string,
+    variants: [
+      {
+        name: variantName as string,
+        levels: [
+          {
+            level: 'gold',
+            name: goldVariant as string,
+          },
+          {
+            level: 'silver',
+            name: silverVariant as string,
+          },
+          {
+            level: 'bronze',
+            name: bronzeVariant as string,
+          },
+        ],
+      },
+    ],
+  };
+  // console.log(payload, 'iki payload');
+
+  await createHabit(payload);
+  return redirect(`/`);
+}
 
 export const AddHabit = () => {
-  const handleSubmitHabit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const values = Object.fromEntries(formData.entries());
-    console.log(values);
-  };
-
   return (
     <Layout>
       <h2 className='font-bold text-xl mt-4'>Add new habit</h2>
-      <form onSubmit={handleSubmitHabit}>
+      <Form method='post' id='add-habit-form'>
         <div className='form-control w-full mt-2'>
           <div className='label'>
             <span className='label-text'>Name:</span>
@@ -103,7 +143,9 @@ export const AddHabit = () => {
             Back
           </Link>
         </div>
-      </form>
+      </Form>
     </Layout>
   );
 };
+
+AddHabit.action = action;
