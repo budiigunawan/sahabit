@@ -1,7 +1,7 @@
 import localforage from 'localforage';
 import { matchSorter } from 'match-sorter';
 import sortBy from 'sort-by';
-import { Habit } from './types/habit-type';
+import { Habit, HabitDone } from './types/habit-type';
 
 export async function getHabits(query?: string) {
   await fakeNetwork(`getHabits:${query}`);
@@ -70,6 +70,20 @@ export async function skipHabit(id: string) {
   if (!habit) throw new Error(`No habit found for ${id}`);
 
   Object.assign(habit, { ...habit, status: 'skip' });
+  await set(habits);
+  return habit;
+}
+
+export async function doHabit(id: string, habitDone: HabitDone) {
+  await fakeNetwork();
+  const habits = (await localforage.getItem('habits')) as Habit[];
+  const habit = habits?.find((habit) => habit.id === id);
+
+  if (!habit) throw new Error(`No habit found for ${id}`);
+
+  Object.assign(habit, { ...habit, status: 'done', habitDone });
+  console.log(habits, 'iki habits');
+
   await set(habits);
   return habit;
 }

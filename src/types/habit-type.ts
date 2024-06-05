@@ -20,5 +20,5 @@ export type VariantLevel = {
 
 export type HabitDone = {
   variantName: string;
-  selectedLevel: VariantLevel | null;
+  selectedLevel?: VariantLevel;
 };

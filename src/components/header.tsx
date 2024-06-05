@@ -24,7 +24,7 @@ export const Header = ({ point, habitsCounter }: HeaderProps) => {
       <progress
         className='mt-8 progress progress-success w-full h-7'
         value={point}
-        max='9'
+        max={9}
       ></progress>
     </div>
   );

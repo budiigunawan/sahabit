@@ -43,10 +43,14 @@ export const Root = () => {
     return 0;
   }, [habits]);
 
+  const isAddHabitDisabled: boolean = useMemo(() => {
+    return habits.length >= 3;
+  }, [habits]);
+
   return (
     <Layout>
       <Header point={point} habitsCounter={habits.length} />
-      <Habits habits={habits} />
+      <Habits habits={habits} isAddHabitDisabled={isAddHabitDisabled} />
     </Layout>
   );
 };

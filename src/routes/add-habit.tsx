@@ -100,7 +100,7 @@ export const AddHabit = () => {
                     name='goldVariant'
                     type='text'
                     className='grow'
-                    placeholder='1km'
+                    placeholder='5km'
                   />
                 </label>
                 <label className='input input-bordered flex items-center gap-2 mb-2'>
@@ -118,7 +118,7 @@ export const AddHabit = () => {
                     name='bronzeVariant'
                     type='text'
                     className='grow'
-                    placeholder='5km'
+                    placeholder='1km'
                   />
                 </label>
               </div>
@@ -126,7 +126,7 @@ export const AddHabit = () => {
           </div>
         </div>
         <div className='mt-8 flex gap-2 justify-end'>
-          <button type='submit' className='btn btn-success'>
+          <button type='submit' className='btn btn-success text-white'>
             Add
           </button>
           <Link to='/' className='btn btn-outline btn-error'>

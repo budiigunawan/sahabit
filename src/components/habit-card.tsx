@@ -8,12 +8,14 @@ type HabitCardProps = {
   habit: Habit;
   setDeleteHabitId: (habitId: string) => void;
   setSkipHabitId: (habitId: string) => void;
+  setSelectedHabit: (habit: Habit) => void;
 };
 
 export const HabitCard = ({
   habit,
   setDeleteHabitId,
   setSkipHabitId,
+  setSelectedHabit,
 }: HabitCardProps) => {
   const handleOpenDeleteModal = (habitId: string) => {
     setDeleteHabitId(habitId);
@@ -23,6 +25,11 @@ export const HabitCard = ({
   const handleOpenSkipModal = (habitId: string) => {
     setSkipHabitId(habitId);
     (document?.getElementById('skip-modal') as HTMLDialogElement).showModal();
+  };
+
+  const handleOpenDoModal = (habit: Habit) => {
+    setSelectedHabit(habit);
+    (document?.getElementById('do-modal') as HTMLDialogElement).showModal();
   };
 
   const badgeColor = useMemo(() => {
@@ -82,13 +89,16 @@ export const HabitCard = ({
         </div>
         <div className='relative card-actions p-4 overflow-hidden'>
           <button
+            type='button'
             className={`btn btn-sm btn-success text-white ${
               habit.status && 'btn-disabled'
             }`}
+            onClick={() => handleOpenDoModal(habit)}
           >
             Do it
           </button>
           <button
+            type='button'
             className={`btn btn-sm btn-error ${
               habit.status ? 'btn-disabled' : 'btn-outline'
             }`}
