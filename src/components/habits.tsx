@@ -4,7 +4,7 @@ import { HabitCard } from './habit-card';
 import { Habit } from '../types/habit-type';
 import { Link, useRevalidator } from 'react-router-dom';
 import { DeleteModal } from './delete-modal';
-import { deleteHabit } from '../habits';
+import { deleteHabit, skipHabit } from '../habits';
 import { SkipModal } from './skip-modal';
 
 type HabitsProps = {
@@ -26,7 +26,9 @@ export const Habits = ({ habits }: HabitsProps) => {
   // }
 
   const handleSkipHabit = async () => {
-    console.log(skipHabitId);
+    await skipHabit(skipHabitId);
+    (document?.getElementById('skip-modal') as HTMLDialogElement).close();
+    revalidator.revalidate();
   };
 
   return (

@@ -62,6 +62,18 @@ export async function deleteHabit(id: string) {
   return false;
 }
 
+export async function skipHabit(id: string) {
+  await fakeNetwork();
+  const habits = (await localforage.getItem('habits')) as Habit[];
+  const habit = habits?.find((habit) => habit.id === id);
+
+  if (!habit) throw new Error(`No habit found for ${id}`);
+
+  Object.assign(habit, { ...habit, status: 'skip' });
+  await set(habits);
+  return habit;
+}
+
 function set(habits: Habit[]) {
   return localforage.setItem('habits', habits);
 }

@@ -10,7 +10,11 @@ export const SkipModal = ({ handleSkip }: DeleteModalProps) => {
         <p className='py-4'>This process cannot be undone.</p>
         <div className='modal-action'>
           <form className='flex gap-2' method='dialog'>
-            <button className='btn btn-outline btn-error' onClick={handleSkip}>
+            <button
+              type='button'
+              className='btn btn-outline btn-error'
+              onClick={handleSkip}
+            >
               Skip
             </button>
             <button className='btn'>Close</button>
