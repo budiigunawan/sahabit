@@ -1,7 +1,15 @@
 import { Layout } from '../components/layout';
-import { Link, Form, redirect, useLoaderData } from 'react-router-dom';
+import {
+  Link,
+  Form,
+  redirect,
+  useLoaderData,
+  useNavigation,
+  Navigation,
+} from 'react-router-dom';
 import { editHabit, getHabit } from '../habits';
 import { Habit } from '../types/habit-type';
+import { useMemo } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function loader({ params }: { params: any }): Promise<{
@@ -54,6 +62,12 @@ async function action({ request, params }: { request: Request; params: any }) {
 
 export const EditHabit = () => {
   const { habit } = useLoaderData() as { habit: Habit };
+  const navigation: Navigation = useNavigation();
+
+  const isSubmitting = useMemo(
+    () => navigation.state === 'submitting',
+    [navigation]
+  );
 
   return (
     <Layout>
@@ -142,10 +156,21 @@ export const EditHabit = () => {
           </div>
         </div>
         <div className='mt-8 flex gap-2 justify-end'>
-          <button type='submit' className='btn btn-success'>
+          <button
+            type='submit'
+            className={`btn btn-success text-white ${
+              isSubmitting && 'btn-disabled'
+            }`}
+          >
+            {isSubmitting && <span className='loading loading-spinner'></span>}
             Submit
           </button>
-          <Link to='/' className='btn btn-outline btn-error'>
+          <Link
+            to={isSubmitting ? '#' : '/'}
+            className={`btn btn-outline btn-error ${
+              isSubmitting && 'btn-disabled'
+            }`}
+          >
             Back
           </Link>
         </div>
