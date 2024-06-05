@@ -1,7 +1,14 @@
 import { Layout } from '../components/layout';
-import { Link, Form, redirect } from 'react-router-dom';
+import {
+  Link,
+  Form,
+  redirect,
+  useNavigation,
+  Navigation,
+} from 'react-router-dom';
 import { Habit } from '../types/habit-type';
 import { createHabit } from '../habits';
+import { useMemo } from 'react';
 
 type ActionProps = {
   request: Request;
@@ -48,6 +55,13 @@ async function action({ request }: ActionProps) {
 }
 
 export const AddHabit = () => {
+  const navigation: Navigation = useNavigation();
+
+  const isSubmitting = useMemo(
+    () => navigation.state === 'submitting',
+    [navigation]
+  );
+
   return (
     <Layout>
       <h2 className='font-bold text-xl mt-4'>Add new habit</h2>
@@ -126,10 +140,21 @@ export const AddHabit = () => {
           </div>
         </div>
         <div className='mt-8 flex gap-2 justify-end'>
-          <button type='submit' className='btn btn-success text-white'>
+          <button
+            type='submit'
+            className={`btn btn-success text-white ${
+              isSubmitting && 'btn-disabled'
+            }`}
+          >
+            {isSubmitting && <span className='loading loading-spinner'></span>}
             Add
           </button>
-          <Link to='/' className='btn btn-outline btn-error'>
+          <Link
+            to={isSubmitting ? '#' : '/'}
+            className={`btn btn-outline btn-error ${
+              isSubmitting && 'btn-disabled'
+            }`}
+          >
             Back
           </Link>
         </div>
