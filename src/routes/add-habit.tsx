@@ -1,5 +1,4 @@
 import { Layout } from '../components/layout';
-import { MdAdd, MdDeleteForever } from 'react-icons/md';
 import { Link, Form, redirect } from 'react-router-dom';
 import { Habit } from '../types/habit-type';
 import { createHabit } from '../habits';
@@ -123,16 +122,8 @@ export const AddHabit = () => {
                   />
                 </label>
               </div>
-              <div className='card-actions justify-end'>
-                <button type='button' className='btn btn-square btn-sm'>
-                  <MdDeleteForever />
-                </button>
-              </div>
             </div>
           </div>
-          <button type='button' className='btn btn-sm btn-ghost w-24 mt-2'>
-            <MdAdd /> Variant
-          </button>
         </div>
         <div className='mt-8 flex gap-2 justify-end'>
           <button type='submit' className='btn btn-success'>
