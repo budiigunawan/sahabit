@@ -1,10 +1,11 @@
 export type Habit = {
-  id: string;
+  id?: string;
+  createdAt?: number;
   name: string;
   category: string;
   variants: HabitVariant[];
-  status: string | undefined;
-  habitDone: HabitDone | null;
+  status?: string;
+  habitDone?: HabitDone;
 };
 
 export type HabitVariant = {
@@ -19,5 +20,5 @@ export type VariantLevel = {
 
 export type HabitDone = {
   variantName: string;
-  selectedLevel: VariantLevel | null;
+  selectedLevel?: VariantLevel;
 };

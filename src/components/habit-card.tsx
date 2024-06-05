@@ -7,12 +7,29 @@ import { Link } from 'react-router-dom';
 type HabitCardProps = {
   habit: Habit;
   setDeleteHabitId: (habitId: string) => void;
+  setSkipHabitId: (habitId: string) => void;
+  setSelectedHabit: (habit: Habit) => void;
 };
 
-export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
+export const HabitCard = ({
+  habit,
+  setDeleteHabitId,
+  setSkipHabitId,
+  setSelectedHabit,
+}: HabitCardProps) => {
   const handleOpenDeleteModal = (habitId: string) => {
     setDeleteHabitId(habitId);
     (document?.getElementById('delete-modal') as HTMLDialogElement).showModal();
+  };
+
+  const handleOpenSkipModal = (habitId: string) => {
+    setSkipHabitId(habitId);
+    (document?.getElementById('skip-modal') as HTMLDialogElement).showModal();
+  };
+
+  const handleOpenDoModal = (habit: Habit) => {
+    setSelectedHabit(habit);
+    (document?.getElementById('do-modal') as HTMLDialogElement).showModal();
   };
 
   const badgeColor = useMemo(() => {
@@ -60,10 +77,10 @@ export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
               className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
             >
               <li>
-                <Link to={'/edit-habit/123'}>Edit</Link>
+                <Link to={`/edit-habit/${habit.id}`}>Edit</Link>
               </li>
               <li>
-                <button onClick={() => handleOpenDeleteModal(habit.id)}>
+                <button onClick={() => handleOpenDeleteModal(habit.id!)}>
                   Delete
                 </button>
               </li>
@@ -72,16 +89,20 @@ export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
         </div>
         <div className='relative card-actions p-4 overflow-hidden'>
           <button
+            type='button'
             className={`btn btn-sm btn-success text-white ${
               habit.status && 'btn-disabled'
             }`}
+            onClick={() => handleOpenDoModal(habit)}
           >
             Do it
           </button>
           <button
+            type='button'
             className={`btn btn-sm btn-error ${
               habit.status ? 'btn-disabled' : 'btn-outline'
             }`}
+            onClick={() => handleOpenSkipModal(habit.id!)}
           >
             Skip
           </button>

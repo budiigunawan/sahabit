@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 
 export const Navbar = () => {
@@ -7,10 +8,10 @@ export const Navbar = () => {
       <div className='drawer-content flex flex-col'>
         <div className='navbar bg-base-100'>
           <div className='flex-1'>
-            <a className='btn btn-ghost text-xl px-2'>
+            <Link to={'/'} className='btn btn-ghost text-xl px-2'>
               <img src={Logo} className='h-7 w-7' />
               Sahabit
-            </a>
+            </Link>
           </div>
           {/* <div className='flex-none'>
             <label

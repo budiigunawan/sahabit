@@ -12,16 +12,20 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
+    loader: Root.loader,
   },
   {
     path: '/add-habit',
     element: <AddHabit />,
     errorElement: <ErrorPage />,
+    action: AddHabit.action,
   },
   {
     path: '/edit-habit/:habitId',
     element: <EditHabit />,
     errorElement: <ErrorPage />,
+    loader: EditHabit.loader,
+    action: EditHabit.action,
   },
 ]);
 
