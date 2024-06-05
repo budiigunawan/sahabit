@@ -7,12 +7,22 @@ import { Link } from 'react-router-dom';
 type HabitCardProps = {
   habit: Habit;
   setDeleteHabitId: (habitId: string) => void;
+  setSkipHabitId: (habitId: string) => void;
 };
 
-export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
+export const HabitCard = ({
+  habit,
+  setDeleteHabitId,
+  setSkipHabitId,
+}: HabitCardProps) => {
   const handleOpenDeleteModal = (habitId: string) => {
     setDeleteHabitId(habitId);
     (document?.getElementById('delete-modal') as HTMLDialogElement).showModal();
+  };
+
+  const handleOpenSkipModal = (habitId: string) => {
+    setSkipHabitId(habitId);
+    (document?.getElementById('skip-modal') as HTMLDialogElement).showModal();
   };
 
   const badgeColor = useMemo(() => {
@@ -63,7 +73,7 @@ export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
                 <Link to={`/edit-habit/${habit.id}`}>Edit</Link>
               </li>
               <li>
-                <button onClick={() => handleOpenDeleteModal(habit.id || '')}>
+                <button onClick={() => handleOpenDeleteModal(habit.id!)}>
                   Delete
                 </button>
               </li>
@@ -82,6 +92,7 @@ export const HabitCard = ({ habit, setDeleteHabitId }: HabitCardProps) => {
             className={`btn btn-sm btn-error ${
               habit.status ? 'btn-disabled' : 'btn-outline'
             }`}
+            onClick={() => handleOpenSkipModal(habit.id!)}
           >
             Skip
           </button>

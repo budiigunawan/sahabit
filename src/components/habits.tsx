@@ -5,6 +5,7 @@ import { Habit } from '../types/habit-type';
 import { Link, useRevalidator } from 'react-router-dom';
 import { DeleteModal } from './delete-modal';
 import { deleteHabit } from '../habits';
+import { SkipModal } from './skip-modal';
 
 type HabitsProps = {
   habits: Habit[];
@@ -12,11 +13,20 @@ type HabitsProps = {
 
 export const Habits = ({ habits }: HabitsProps) => {
   const [deleteHabitId, setDeleteHabitId] = useState<string>('');
+  const [skipHabitId, setSkipHabitId] = useState<string>('');
   const revalidator = useRevalidator();
 
   const handleDeleteHabit = async () => {
     await deleteHabit(deleteHabitId);
     revalidator.revalidate();
+  };
+
+  // const handleDoHabit = async () => {
+
+  // }
+
+  const handleSkipHabit = async () => {
+    console.log(skipHabitId);
   };
 
   return (
@@ -27,12 +37,14 @@ export const Habits = ({ habits }: HabitsProps) => {
             key={index}
             habit={habit}
             setDeleteHabitId={setDeleteHabitId}
+            setSkipHabitId={setSkipHabitId}
           />
         ))
       ) : (
         <EmptyHabit />
       )}
       <DeleteModal handleDelete={handleDeleteHabit} />
+      <SkipModal handleSkip={handleSkipHabit} />
       <Link to='/add-habit' className='btn btn-success w-full mt-8 text-white'>
         Add habit
       </Link>
